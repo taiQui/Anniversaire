@@ -63,7 +63,7 @@ public class Database {
    }
    
    private boolean IdIsOk(int id) throws SQLException{
-       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where id = "+id+"");
+       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where id = '"+id+"'");
        resultset.beforeFirst();
        if(resultset.next())
            return false;

@@ -118,7 +118,7 @@ public class FXMLDocumentController implements Initializable {
        
         if(Btn_add.getText().equals("Ajouter un anniversaire")){
             Btn_add.setText("Retour");
-            boolean Add = false;
+           
 
             text_printBirthday.setVisible(false);
             text_printBirthday.setDisable(true);
@@ -154,24 +154,6 @@ public class FXMLDocumentController implements Initializable {
             BtnValidate.setDisable(false);
 
 
-
-            if(!TextIsEmpty()){
-                if(DateIsOk()){
-                    Add = true;
-                } else {
-                    newW("Erreur","Problème avec la date","Il y'a une erreur avec la date, le format dois etre aaaa-MM-jj -> Annee-mois-jour");
-                }
-            } else {
-                newW("Erreur","Problème avec les champs","Il y'a une erreur, les champs ne sont pas remplis");
-            }
-
-
-            if(Add){
-                Anniversaire a = new Anniversaire();
-                a.setAnniversaire(text_nom.getText(), text_prenom.getText(), text_date_naissance.getText());
-                _database.AddBirthday(a);
-                newW("Succès","L'anniversaire à bien ete ajouté","");
-            }
         } else if (Btn_add.getText().equals("Retour")) {
             Btn_add.setText("Ajouter un anniversaire");
             
@@ -218,11 +200,90 @@ public class FXMLDocumentController implements Initializable {
     private void onClickBtnSee(MouseEvent event) throws SQLException {
         if( BtnSee.getText().equals("Voir les anniversaires")){
             
+            BtnSee.setText("Retour");
+            
+            text_printBirthday.setVisible(true);
+            text_printBirthday.setDisable(false);
+
+            Btn_add.setVisible(false);
+            Btn_add.setDisable(true);
+
+            BtnSee.setVisible(true);
+            BtnSee.setDisable(false);
+
+            BtnDelete.setVisible(false);
+            BtnDelete.setDisable(true);
+
+            label_Nom.setVisible(false);
+            label_Nom.setDisable(true);
+
+            label_prenom.setVisible(false);
+            label_prenom.setDisable(true);
+
+            label_daten_naissance.setVisible(false);
+            label_daten_naissance.setDisable(true);
+
+            text_nom.setVisible(false);
+            text_nom.setDisable(true);
+
+            text_prenom.setVisible(false);
+            text_prenom.setDisable(true);
+
+            text_date_naissance.setVisible(false);
+            text_date_naissance.setDisable(true);
+
+            BtnValidate.setVisible(false);
+            BtnValidate.setDisable(true);
+
+            
             ArrayList<Anniversaire> liste = _database.getAllBirthday();
-            //d
+            
+            text_printBirthday.setText("");
+            if(liste.size() == 0){
+                text_printBirthday.setText("Il y'a pas d'anniversaire enregistré");
+            } else {
+                for(int i = 0; i < liste.size() ; i++){
+                    text_printBirthday.setText(liste.get(i).get_prenom() + "   "+liste.get(i).get_nom()+ "   "+liste.get(i).get_date_naissance());
+                }                 
+            }
+           
             
         } else if( BtnSee.getText().equals("Retour")){
             
+            BtnSee.setText("Voir les anniversaires");
+            
+            text_printBirthday.setVisible(true);
+            text_printBirthday.setDisable(false);
+
+            Btn_add.setVisible(true);
+            Btn_add.setDisable(false);
+
+            BtnSee.setVisible(true);
+            BtnSee.setDisable(false);
+
+            BtnDelete.setVisible(true);
+            BtnDelete.setDisable(false);
+
+            label_Nom.setVisible(false);
+            label_Nom.setDisable(true);
+
+            label_prenom.setVisible(false);
+            label_prenom.setDisable(true);
+
+            label_daten_naissance.setVisible(false);
+            label_daten_naissance.setDisable(true);
+
+            text_nom.setVisible(false);
+            text_nom.setDisable(true);
+
+            text_prenom.setVisible(false);
+            text_prenom.setDisable(true);
+
+            text_date_naissance.setVisible(false);
+            text_date_naissance.setDisable(true);
+
+            BtnValidate.setVisible(false);
+            BtnValidate.setDisable(true);
         }
     }
 
@@ -251,7 +312,28 @@ public class FXMLDocumentController implements Initializable {
     }
 
     @FXML
-    private void onClickBtnValidate(MouseEvent event) {
+    private void onClickBtnValidate(MouseEvent event) throws SQLException {
+        
+           boolean Add = false;
+        
+           if(!TextIsEmpty()){
+                if(DateIsOk()){
+                    Add = true;
+                } else {
+                    newW("Erreur","Problème avec la date","Il y'a une erreur avec la date, le format dois etre aaaa-MM-jj -> Annee-mois-jour");
+                }
+            } else {
+                newW("Erreur","Problème avec les champs","Il y'a une erreur, les champs ne sont pas remplis");
+            }
+
+
+            if(Add){
+                Anniversaire a = new Anniversaire();
+                a.setAnniversaire(text_nom.getText(), text_prenom.getText(), text_date_naissance.getText());
+                _database.AddBirthday(a);
+                newW("Succès","L'anniversaire à bien ete ajouté","");
+            }
+        
     }
     
     

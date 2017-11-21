@@ -245,7 +245,7 @@ public class FXMLDocumentController implements Initializable {
         } else if( BtnSee.getText().equals("Retour")){
             
             BtnSee.setText("Voir les anniversaires");
-            PrintBirthday();            
+                       
             
             text_printBirthday.setVisible(true);
             text_printBirthday.setDisable(false);
@@ -271,22 +271,20 @@ public class FXMLDocumentController implements Initializable {
 
             text_prenom.setVisible(false);
             text_prenom.setDisable(true);
-
+            
+            text_date_naissance.setText("");
             text_date_naissance.setVisible(false);
             text_date_naissance.setDisable(true);
-            text_date_naissance.setText("");
-
+            
+            BtnValidate.setText("Valider");
             BtnValidate.setVisible(false);
             BtnValidate.setDisable(true);
-            BtnValidate.setText("Valider");
+            
+            PrintBirthday(); 
         }
     }
 
-    @FXML
-    private void onClickBtnDelete(MouseEvent event) {
-       
-    }
-    
+
     
     
     public void CreateDatabase() throws SQLException{
@@ -314,7 +312,8 @@ public class FXMLDocumentController implements Initializable {
             }
         } else {
             text_printBirthday.setText("Il n'y a aucun anniversaire aujourd'hui");
-            text_printBirthday.setText(text_printBirthday.getText() + "\n\n\n" + "Le prochain anniversaire est celui de "+_database.NextBirthday().get_prenom()+" "+_database.NextBirthday().get_nom());
+            if(_database.NextBirthday()!= null)
+                text_printBirthday.setText(text_printBirthday.getText() + "\n\n\n" + "Le prochain anniversaire est celui de "+_database.NextBirthday().get_prenom()+" "+_database.NextBirthday().get_nom() +" le "+_database.NextBirthday().get_date_naissance());
         }
         
     }

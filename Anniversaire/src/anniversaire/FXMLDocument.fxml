@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox id="AnchorPane" prefHeight="720.0" prefWidth="1022.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="anniversaire.FXMLDocumentController">
+  <children>
+    <VBox alignment="CENTER" prefHeight="130.0" prefWidth="798.0">
+      <children>
+        <Text scaleX="7.414681489324157" scaleY="5.814220577237022" strokeType="OUTSIDE" strokeWidth="0.0" text="Anniversaire" underline="true">
+          <font>
+            <Font name="Cambria" size="15.0" />
+          </font>
+        </Text>
+      </children>
+    </VBox>
+    <VBox alignment="CENTER" prefHeight="317.0" prefWidth="1022.0">
+      <children>
+        <TextArea fx:id="text_printBirthday" prefWidth="603.0" visible="true" wrapText="true" />
+        <HBox padding="$x2" prefHeight="135.0" prefWidth="622.0">
+          <children>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+              <children>
+                <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                    <Label fx:id="label_Nom" prefHeight="44.0" prefWidth="100.0" text="Nom">
+                      <font>
+                        <Font size="14.0" fx:id="x1" />
+                      </font>
+                    </Label>
+                    <Label fx:id="label_prenom" font="$x1" prefHeight="44.0" prefWidth="100.0" text="Prenom" />
+                    <Label fx:id="label_daten_naissance" font="$x1" prefHeight="44.0" prefWidth="100.0" text="Date naissance" />
+                  </children>
+                </VBox>
+              </children>
+            </HBox>
+            <VBox prefHeight="144.0" prefWidth="325.0">
+              <children>
+                <TextField fx:id="text_nom" prefHeight="44.0" prefWidth="325.0" />
+                <TextField fx:id="text_prenom" prefHeight="44.0" prefWidth="325.0" />
+                <TextField fx:id="text_date_naissance" prefHeight="44.0" prefWidth="325.0" />
+              </children>
+              <padding>
+                <Insets fx:id="x2" />
+              </padding>
+            </VBox>
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0">
+              <children>
+                <Button fx:id="BtnValidate" mnemonicParsing="false" onMouseClicked="#onClickBtnValidate" prefHeight="37.0" prefWidth="99.0" text="Valider" />
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+      </children>
+      <padding>
+        <Insets left="200.0" right="200.0" />
+      </padding>
+    </VBox>
+    <VBox alignment="TOP_LEFT" prefHeight="251.0" prefWidth="1022.0">
+      <children>
+        <HBox prefHeight="200.0" prefWidth="798.0" spacing="159.0">
+          <children>
+            <Button fx:id="Btn_add" mnemonicParsing="false" onMouseClicked="#onClickBtnAdd" prefHeight="200.0" prefWidth="241.0" text="Ajouter un anniversaire">
+              <font>
+                <Font size="16.0" fx:id="x3" />
+              </font>
+            </Button>
+            <Button fx:id="BtnSee" font="$x3" mnemonicParsing="false" onMouseClicked="#onClickBtnSee" prefHeight="200.0" prefWidth="222.0" text="Voir les anniversaires" />
+            <Button fx:id="BtnDelete" font="$x3" mnemonicParsing="false" onMouseClicked="#onClickBtnDelete" prefHeight="200.0" prefWidth="241.0" text="Supprimer un anniversaire" />
+          </children>
+        </HBox>
+      </children>
+      <padding>
+        <Insets top="100.0" />
+      </padding>
+    </VBox>
+  </children>
+</VBox>

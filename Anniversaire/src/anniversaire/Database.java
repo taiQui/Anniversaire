@@ -52,7 +52,7 @@ public class Database {
        resultset.beforeFirst();
        while(resultset.next()){
            Anniversaire a = new Anniversaire();
-            a.setAnniversaire(resultset.getString("nom"),resultset.getString("prenom"),resultset.getString("date_naissance"));
+            a.setAnniversaire(resultset.getString("nom"),resultset.getString("prenom"),resultset.getString("date_naissance"),resultset.getString("id"));
            liste.add(a);
        }
        
@@ -62,7 +62,7 @@ public class Database {
        return(liste);
    }
    
-   private boolean IdIsOk(int id) throws SQLException{
+   public boolean IdIsOk(String id) throws SQLException{
        this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where id = '"+id+"'");
        resultset.beforeFirst();
        if(resultset.next())
@@ -73,7 +73,7 @@ public class Database {
    public void AddBirthday(Anniversaire birthday) throws SQLException{
        
        int random = (int)(Math.random() * (1000 - 0) +0 );
-       while(!IdIsOk(random)){
+       while(!IdIsOk(String.valueOf(random))){
             random = (int)(Math.random() * (1000 - 0) +0 );
        }
        
@@ -90,10 +90,16 @@ public class Database {
               resultset.beforeFirst();
               while(resultset.next()){
                   Anniversaire a = new Anniversaire();
-                  a.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"));
+                  a.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"),resultset.getString("id"));
                   liste.add(a);
               }
               return liste;
    }
     
+   
+   public void DeleteBirthday(String id) throws SQLException{
+       _connection.createStatement().executeUpdate("delete from Anniversaire where id = '"+id+"'");
+       _connection.commit();
+   }
+   
 }

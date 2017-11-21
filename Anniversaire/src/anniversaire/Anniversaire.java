@@ -40,13 +40,15 @@ public class Anniversaire extends Application {
     String _nom;
     String _prenom;
     String _date_naissance;
+    String _id;
     
     
     
-    public void setAnniversaire(String nom,String prenom, String date_naissance){
+    public void setAnniversaire(String nom,String prenom, String date_naissance,String id){
         this._nom = nom;
         this._prenom = prenom;
         this._date_naissance = date_naissance;
+        this._id = id;
     }
     
     public String get_nom(){
@@ -59,6 +61,10 @@ public class Anniversaire extends Application {
     
     public String get_date_naissance(){
         return(_date_naissance);
+    }
+    
+    public String get_id(){
+        return (_id);
     }
 
 

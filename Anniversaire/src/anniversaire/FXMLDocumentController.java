@@ -9,6 +9,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,8 +40,6 @@ public class FXMLDocumentController implements Initializable {
     private Font x1;
     @FXML
     private Button BtnSee;
-    @FXML
-    private Button BtnDelete;
     
     
     Database _database = null;
@@ -72,15 +71,13 @@ public class FXMLDocumentController implements Initializable {
         
         text_printBirthday.setVisible(true);
         text_printBirthday.setDisable(false);
+        text_printBirthday.setStyle("-fx-font: 20 arial;");
         
         Btn_add.setVisible(true);
         Btn_add.setDisable(false);
         
         BtnSee.setVisible(true);
         BtnSee.setDisable(false);
-        
-        BtnDelete.setVisible(true);
-        BtnDelete.setDisable(false);
         
         label_Nom.setVisible(false);
         label_Nom.setDisable(true);
@@ -129,9 +126,6 @@ public class FXMLDocumentController implements Initializable {
             BtnSee.setVisible(false);
             BtnSee.setDisable(true);
 
-            BtnDelete.setVisible(false);
-            BtnDelete.setDisable(true);
-
             label_Nom.setVisible(true);
             label_Nom.setDisable(false);
 
@@ -166,9 +160,6 @@ public class FXMLDocumentController implements Initializable {
             BtnSee.setVisible(true);
             BtnSee.setDisable(false);
 
-            BtnDelete.setVisible(true);
-            BtnDelete.setDisable(false);
-
             label_Nom.setVisible(false);
             label_Nom.setDisable(true);
 
@@ -186,6 +177,7 @@ public class FXMLDocumentController implements Initializable {
 
             text_date_naissance.setVisible(false);
             text_date_naissance.setDisable(true);
+            text_date_naissance.setText("");
 
             BtnValidate.setVisible(false);
             BtnValidate.setDisable(true);
@@ -211,17 +203,15 @@ public class FXMLDocumentController implements Initializable {
             BtnSee.setVisible(true);
             BtnSee.setDisable(false);
 
-            BtnDelete.setVisible(false);
-            BtnDelete.setDisable(true);
-
             label_Nom.setVisible(false);
             label_Nom.setDisable(true);
 
             label_prenom.setVisible(false);
             label_prenom.setDisable(true);
 
-            label_daten_naissance.setVisible(false);
-            label_daten_naissance.setDisable(true);
+            label_daten_naissance.setVisible(true);
+            label_daten_naissance.setDisable(false);
+            label_daten_naissance.setText("Id");
 
             text_nom.setVisible(false);
             text_nom.setDisable(true);
@@ -229,21 +219,25 @@ public class FXMLDocumentController implements Initializable {
             text_prenom.setVisible(false);
             text_prenom.setDisable(true);
 
-            text_date_naissance.setVisible(false);
-            text_date_naissance.setDisable(true);
+            text_date_naissance.setVisible(true);
+            text_date_naissance.setDisable(false);
 
-            BtnValidate.setVisible(false);
-            BtnValidate.setDisable(true);
+            BtnValidate.setVisible(true);
+            BtnValidate.setDisable(false);
+            BtnValidate.setText("Supprimer");
 
             
             ArrayList<Anniversaire> liste = _database.getAllBirthday();
-            
+
             text_printBirthday.setText("");
+
             if(liste.size() == 0){
                 text_printBirthday.setText("Il y'a pas d'anniversaire enregistré");
             } else {
+                text_printBirthday.setText("Id");
                 for(int i = 0; i < liste.size() ; i++){
-                    text_printBirthday.setText(liste.get(i).get_prenom() + "   "+liste.get(i).get_nom()+ "   "+liste.get(i).get_date_naissance());
+                               
+                    text_printBirthday.setText(text_printBirthday.getText()+'\n'+liste.get(i).get_id()+"             "+liste.get(i).get_prenom() + "         "+liste.get(i).get_nom()+ "         "+liste.get(i).get_date_naissance());
                 }                 
             }
            
@@ -251,6 +245,7 @@ public class FXMLDocumentController implements Initializable {
         } else if( BtnSee.getText().equals("Retour")){
             
             BtnSee.setText("Voir les anniversaires");
+            PrintBirthday();            
             
             text_printBirthday.setVisible(true);
             text_printBirthday.setDisable(false);
@@ -261,9 +256,6 @@ public class FXMLDocumentController implements Initializable {
             BtnSee.setVisible(true);
             BtnSee.setDisable(false);
 
-            BtnDelete.setVisible(true);
-            BtnDelete.setDisable(false);
-
             label_Nom.setVisible(false);
             label_Nom.setDisable(true);
 
@@ -272,6 +264,7 @@ public class FXMLDocumentController implements Initializable {
 
             label_daten_naissance.setVisible(false);
             label_daten_naissance.setDisable(true);
+            label_daten_naissance.setText("Date naissance");
 
             text_nom.setVisible(false);
             text_nom.setDisable(true);
@@ -281,14 +274,17 @@ public class FXMLDocumentController implements Initializable {
 
             text_date_naissance.setVisible(false);
             text_date_naissance.setDisable(true);
+            text_date_naissance.setText("");
 
             BtnValidate.setVisible(false);
             BtnValidate.setDisable(true);
+            BtnValidate.setText("Valider");
         }
     }
 
     @FXML
     private void onClickBtnDelete(MouseEvent event) {
+       
     }
     
     
@@ -299,11 +295,22 @@ public class FXMLDocumentController implements Initializable {
     }
     
     public void PrintBirthday() throws SQLException{
+        //text_printBirthday.setStyle("-fx-font: 30 arial;");
         java.util.Calendar cal = Calendar.getInstance();
-        ArrayList<Anniversaire> liste = _database.getBirthday(Calendar.getInstance().get(Calendar.YEAR),Calendar.getInstance().get(Calendar.MONTH));
+        System.out.println("mois : "+ (Calendar.getInstance().get(Calendar.MONTH)+1) + "    jour : "+Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+        ArrayList<Anniversaire> liste = _database.getBirthday((Calendar.getInstance().get(Calendar.MONTH)+1),Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         if(!liste.isEmpty()){
+            text_printBirthday.setText("C'est l'anniversaire de : ");
             for(int i = 0 ; i < liste.size(); i++){
-                text_printBirthday.setText(text_printBirthday.getText()+'\n'+liste.get(i).get_prenom()+"   "+liste.get(i).get_nom());
+                java.util.Calendar cal1 = Convertisseur.stringToCalendar(liste.get(i).get_date_naissance(),"yyyy-MM-dd");
+                java.util.Calendar cal_base = Calendar.getInstance();
+                
+                long timeBetween = cal_base.getTime().getTime() - cal1.getTime().getTime();
+                double years = timeBetween / 3.156e+10;
+                int age = (int)Math.floor(years);
+                //System.out.println("age : "+age);
+                
+                text_printBirthday.setText(text_printBirthday.getText()+'\n'+liste.get(i).get_prenom()+"   "+liste.get(i).get_nom() +" ça lui fais "+ age + "ans");
             }
         } else {
             text_printBirthday.setText("Il n'y a aucun anniversaire aujourd'hui");
@@ -314,7 +321,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void onClickBtnValidate(MouseEvent event) throws SQLException {
         
-           boolean Add = false;
+        if(BtnValidate.getText().equals("Valider")){
+               boolean Add = false;
         
            if(!TextIsEmpty()){
                 if(DateIsOk()){
@@ -329,10 +337,19 @@ public class FXMLDocumentController implements Initializable {
 
             if(Add){
                 Anniversaire a = new Anniversaire();
-                a.setAnniversaire(text_nom.getText(), text_prenom.getText(), text_date_naissance.getText());
+                a.setAnniversaire(text_nom.getText(), text_prenom.getText(), text_date_naissance.getText(),"");
                 _database.AddBirthday(a);
                 newW("Succès","L'anniversaire à bien ete ajouté","");
             }
+        } else if (BtnValidate.getText().equals("Supprimer")){
+            if(!_database.IdIsOk(text_date_naissance.getText())){
+                _database.DeleteBirthday(text_date_naissance.getText());
+                newW("Reussis","La suppresions c'est bien passé","");
+            } else {
+                newW("Erreur","Rechercher dans la base de donné","Il n'y a pas de personne avec cette ID");
+            }
+        }
+        
         
     }
     

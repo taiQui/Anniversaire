@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox id="AnchorPane" prefHeight="720.0" prefWidth="1022.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="anniversaire.FXMLDocumentController">
+<VBox id="AnchorPane" prefHeight="595.0" prefWidth="929.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="anniversaire.FXMLDocumentController">
   <children>
-    <VBox alignment="CENTER" prefHeight="130.0" prefWidth="798.0">
+    <VBox alignment="CENTER" prefHeight="130.0" prefWidth="798.0" VBox.vgrow="ALWAYS">
       <children>
         <Text scaleX="7.414681489324157" scaleY="5.814220577237022" strokeType="OUTSIDE" strokeWidth="0.0" text="Anniversaire" underline="true">
           <font>
@@ -19,12 +19,12 @@
         </Text>
       </children>
     </VBox>
-    <VBox alignment="CENTER" prefHeight="317.0" prefWidth="1022.0">
+    <VBox alignment="CENTER" prefHeight="317.0" prefWidth="1022.0" VBox.vgrow="ALWAYS">
       <children>
-        <TextArea fx:id="text_printBirthday" prefWidth="603.0" visible="true" wrapText="true" />
-        <HBox padding="$x2" prefHeight="135.0" prefWidth="622.0">
+        <TextArea fx:id="text_printBirthday" editable="false" prefWidth="603.0" visible="true" wrapText="true" />
+        <HBox prefHeight="59.0" prefWidth="602.0" VBox.vgrow="ALWAYS">
           <children>
-            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
               <children>
                 <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0">
                   <children>
@@ -39,7 +39,7 @@
                 </VBox>
               </children>
             </HBox>
-            <VBox prefHeight="144.0" prefWidth="325.0">
+            <VBox prefHeight="144.0" prefWidth="325.0" HBox.hgrow="ALWAYS">
               <children>
                 <TextField fx:id="text_nom" prefHeight="44.0" prefWidth="325.0" />
                 <TextField fx:id="text_prenom" prefHeight="44.0" prefWidth="325.0" />
@@ -49,21 +49,24 @@
                 <Insets fx:id="x2" />
               </padding>
             </VBox>
-            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0">
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
               <children>
-                <Button fx:id="BtnValidate" mnemonicParsing="false" onMouseClicked="#onClickBtnValidate" prefHeight="37.0" prefWidth="99.0" text="Valider" />
+                <Button fx:id="BtnValidate" minHeight="19.0" mnemonicParsing="false" onMouseClicked="#onClickBtnValidate" prefHeight="38.0" prefWidth="88.0" text="Valider" />
               </children>
             </VBox>
           </children>
+          <padding>
+            <Insets right="-60.0" />
+          </padding>
         </HBox>
       </children>
       <padding>
         <Insets left="200.0" right="200.0" />
       </padding>
     </VBox>
-    <VBox alignment="TOP_LEFT" prefHeight="251.0" prefWidth="1022.0">
+    <VBox alignment="CENTER" prefHeight="251.0" prefWidth="1022.0" VBox.vgrow="ALWAYS">
       <children>
-        <HBox prefHeight="200.0" prefWidth="798.0" spacing="159.0">
+        <HBox alignment="CENTER" prefHeight="137.0" prefWidth="930.0" spacing="159.0" VBox.vgrow="ALWAYS">
           <children>
             <Button fx:id="Btn_add" mnemonicParsing="false" onMouseClicked="#onClickBtnAdd" prefHeight="200.0" prefWidth="241.0" text="Ajouter un anniversaire">
               <font>
@@ -71,8 +74,10 @@
               </font>
             </Button>
             <Button fx:id="BtnSee" font="$x3" mnemonicParsing="false" onMouseClicked="#onClickBtnSee" prefHeight="200.0" prefWidth="222.0" text="Voir les anniversaires" />
-            <Button fx:id="BtnDelete" font="$x3" mnemonicParsing="false" onMouseClicked="#onClickBtnDelete" prefHeight="200.0" prefWidth="241.0" text="Supprimer un anniversaire" />
           </children>
+          <padding>
+            <Insets bottom="50.0" top="-50.0" />
+          </padding>
         </HBox>
       </children>
       <padding>

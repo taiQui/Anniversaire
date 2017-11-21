@@ -102,4 +102,17 @@ public class Database {
        _connection.commit();
    }
    
+   public Anniversaire NextBirthday() throws SQLException{
+       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where date_naissance >= NOW() order by date_naissance LIMIT 1");
+       
+       resultset.beforeFirst();
+       Anniversaire an = null;
+       if(resultset.next()){
+            an = new Anniversaire();
+           an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
+       }
+
+      return(an);
+   }
+   
 }

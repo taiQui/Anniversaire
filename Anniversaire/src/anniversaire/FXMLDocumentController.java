@@ -314,6 +314,7 @@ public class FXMLDocumentController implements Initializable {
             }
         } else {
             text_printBirthday.setText("Il n'y a aucun anniversaire aujourd'hui");
+            text_printBirthday.setText(text_printBirthday.getText() + "\n\n\n" + "Le prochain anniversaire est celui de "+_database.NextBirthday().get_prenom()+" "+_database.NextBirthday().get_nom());
         }
         
     }

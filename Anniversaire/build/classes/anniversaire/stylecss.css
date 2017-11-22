@@ -8,3 +8,17 @@ and open the template in the editor.
     Author     : taiQui
 */
 
+
+.root {
+    -fx-background-image: url("./image/img.jpg");
+}
+
+
+#AnchorPane {
+    
+}
+
+
+#label_Nom {
+     background-color: fade(#FFFFFF, 50%);
+    }

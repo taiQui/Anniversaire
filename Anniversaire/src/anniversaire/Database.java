@@ -7,6 +7,7 @@ package anniversaire;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -103,7 +104,10 @@ public class Database {
    }
    
    public Anniversaire NextBirthday() throws SQLException{
-       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where date_naissance >= NOW() order by date_naissance LIMIT 1");
+       
+       int mois = Calendar.getInstance().get(Calendar.MONTH)+1;
+       
+       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where MONTH(date_naissance) >= "+mois+" ORDER BY date_naissance ASC FETCH FIRST 1 ROWS ONLY");
        
        resultset.beforeFirst();
        Anniversaire an = null;
@@ -111,7 +115,17 @@ public class Database {
             an = new Anniversaire();
            an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
        }
-
+       if(an == null){
+                  this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where MONTH(date_naissance) <= "+mois+" ORDER BY date_naissance Desc FETCH FIRST 1 ROWS ONLY");
+       
+       resultset.beforeFirst();
+       
+       if(resultset.next()){
+            an = new Anniversaire();
+           an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
+       }
+       return(an);
+       }
       return(an);
    }
    

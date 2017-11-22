@@ -25,6 +25,7 @@ public class Anniversaire extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
+        scene.getStylesheets().add(FXMLDocumentController.class.getResource("stylecss.css").toExternalForm());
         stage.show();
     }
 

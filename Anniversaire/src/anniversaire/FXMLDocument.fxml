@@ -34,7 +34,7 @@
                       </font>
                     </Label>
                     <Label fx:id="label_prenom" alignment="CENTER" font="$x1" prefHeight="44.0" prefWidth="100.0" text="Prenom" />
-                    <Label fx:id="label_daten_naissance" alignment="BASELINE_LEFT" font="$x1" prefHeight="44.0" prefWidth="161.0" text="Date naissance" />
+                    <Label fx:id="label_daten_naissance" alignment="BASELINE_LEFT" contentDisplay="RIGHT" font="$x1" prefHeight="44.0" prefWidth="161.0" text="Date naissance" />
                   </children>
                   <padding>
                     <Insets fx:id="x2" />

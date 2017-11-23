@@ -181,6 +181,7 @@ public class FXMLDocumentController implements Initializable {
 
             BtnValidate.setVisible(false);
             BtnValidate.setDisable(true);
+            PrintBirthday();
             
             
         }

@@ -22,19 +22,19 @@
     <VBox alignment="CENTER" prefHeight="317.0" prefWidth="1022.0" VBox.vgrow="ALWAYS">
       <children>
         <TextArea fx:id="text_printBirthday" editable="false" prefWidth="603.0" visible="true" wrapText="true" />
-        <HBox prefHeight="59.0" prefWidth="602.0" VBox.vgrow="ALWAYS">
+        <HBox prefHeight="158.0" prefWidth="530.0" VBox.vgrow="ALWAYS">
           <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
               <children>
-                <VBox id="VboxLabel" alignment="TOP_RIGHT" prefHeight="144.0" prefWidth="122.0">
+                <VBox id="VboxLabel" alignment="TOP_RIGHT" prefHeight="144.0" prefWidth="145.0">
                   <children>
                     <Label fx:id="label_Nom" alignment="CENTER" contentDisplay="CENTER" prefHeight="44.0" prefWidth="100.0" text="Nom" underline="false">
                       <font>
-                        <Font name="Segoe Print Bold" size="14.0" fx:id="x1" />
+                        <Font name="Segoe Print Bold" size="18.0" fx:id="x1" />
                       </font>
                     </Label>
                     <Label fx:id="label_prenom" alignment="CENTER" font="$x1" prefHeight="44.0" prefWidth="100.0" text="Prenom" />
-                    <Label fx:id="label_daten_naissance" alignment="BASELINE_LEFT" font="$x1" prefHeight="44.0" prefWidth="122.0" text="Date naissance" />
+                    <Label fx:id="label_daten_naissance" alignment="BASELINE_LEFT" font="$x1" prefHeight="44.0" prefWidth="161.0" text="Date naissance" />
                   </children>
                   <padding>
                     <Insets fx:id="x2" />
@@ -42,19 +42,19 @@
                 </VBox>
               </children>
             </HBox>
-            <VBox prefHeight="144.0" prefWidth="325.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="153.94342041015625" prefWidth="257.0" spacing="5.0" HBox.hgrow="ALWAYS">
               <children>
-                <TextField fx:id="text_nom" prefHeight="44.0" prefWidth="325.0" />
-                <TextField fx:id="text_prenom" prefHeight="44.0" prefWidth="325.0" />
-                <TextField fx:id="text_date_naissance" prefHeight="44.0" prefWidth="325.0" />
+                <TextField fx:id="text_nom" prefHeight="51.0" prefWidth="247.0" />
+                <TextField fx:id="text_prenom" prefHeight="44.0" prefWidth="247.0" />
+                <TextField fx:id="text_date_naissance" prefHeight="46.0" prefWidth="247.0" />
               </children>
               <padding>
                 <Insets fx:id="x2" />
               </padding>
             </VBox>
-            <VBox alignment="BOTTOM_RIGHT" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="BOTTOM_RIGHT" prefHeight="153.94342041015625" prefWidth="162.0" HBox.hgrow="ALWAYS">
               <children>
-                <Button fx:id="BtnValidate" minHeight="19.0" mnemonicParsing="false" onMouseClicked="#onClickBtnValidate" prefHeight="38.0" prefWidth="88.0" text="Valider" />
+                <Button fx:id="BtnValidate" minHeight="19.0" mnemonicParsing="false" onMouseClicked="#onClickBtnValidate" prefHeight="56.0" prefWidth="130.0" text="Valider" />
               </children>
             </VBox>
           </children>
@@ -71,12 +71,12 @@
       <children>
         <HBox alignment="CENTER" prefHeight="137.0" prefWidth="930.0" spacing="159.0" VBox.vgrow="ALWAYS">
           <children>
-            <Button fx:id="Btn_add" mnemonicParsing="false" onMouseClicked="#onClickBtnAdd" prefHeight="200.0" prefWidth="241.0" text="Ajouter un anniversaire">
+            <Button fx:id="Btn_add" mnemonicParsing="false" onMouseClicked="#onClickBtnAdd" prefHeight="148.0" prefWidth="266.19708251953125" text="Ajouter un anniversaire">
               <font>
                 <Font size="16.0" fx:id="x3" />
               </font>
             </Button>
-            <Button fx:id="BtnSee" font="$x3" mnemonicParsing="false" onMouseClicked="#onClickBtnSee" prefHeight="200.0" prefWidth="222.0" text="Voir les anniversaires" />
+            <Button fx:id="BtnSee" font="$x3" mnemonicParsing="false" onMouseClicked="#onClickBtnSee" prefHeight="148.0" prefWidth="267.0" text="Voir les anniversaires" />
           </children>
           <padding>
             <Insets bottom="50.0" top="-50.0" />

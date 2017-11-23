@@ -28,10 +28,23 @@ public class Database {
                     + "date_naissance Date,\n"
                     + "constraint Anniversaire_key primary key(id))\n");
             
-            
+            //statement.execute("insert into Anniversaire values ('1','Calibration','test','2000-01-01')");
             
         } catch (SQLException ex) {
-            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("'Database' probably already exists? " + ex.getMessage());
+            java.sql.Connection connection;
+            java.sql.Statement clean_up;
+            try {
+                connection = java.sql.DriverManager.getConnection("jdbc:derby:Database");
+                clean_up = connection.createStatement();
+                /*
+                Nettoyage de la base
+                 */
+                connection.commit();
+            } catch (java.sql.SQLException sqle2) {
+                System.err.println("'bank_database' persistent error: " + sqle2.getMessage());
+                System.exit(-1);
+            }
         }
     }
     

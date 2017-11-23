@@ -8,7 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+<<<<<<< HEAD
     <jar href="Anniversaire.jar" size="108545" download="eager" />
+=======
+    <jar href="Anniversaire.jar" size="108050" download="eager" />
+>>>>>>> 2d5b482fd16bc5ba119868c863d44379a8c429ee
     <jar href="lib\derby.jar" size="2766479" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Anniversaire" >

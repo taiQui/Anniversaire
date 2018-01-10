@@ -24,7 +24,7 @@
         <HBox alignment="CENTER" prefHeight="272.0" prefWidth="530.0" VBox.vgrow="ALWAYS">
           <children>
             <TextArea fx:id="text_printBirthday" editable="false" prefWidth="603.0" visible="true" wrapText="true" />
-            <Label text="* Année sous formes : Année Mois Jour">
+            <Label fx:id="labelInfo" text="* Année sous formes : Année-Mois-Jour">
               <font>
                 <Font name="System Bold Italic" size="12.0" />
               </font>

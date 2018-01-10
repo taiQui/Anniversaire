@@ -77,6 +77,8 @@ final String  nov ="Novembre";
 final String dec =  "Decembre";
     
     String tab[]={jan,feb,mar,avr,mai,jui,juil,aout,sep,oct,nov,dec};
+    @FXML
+    private Label labelInfo;
     
     
     
@@ -114,6 +116,7 @@ final String dec =  "Decembre";
         BtnValidate.setVisible(false);
         BtnValidate.setDisable(true);
         
+        labelInfo.setVisible(false);
         
         try {
             CreateDatabase();
@@ -161,6 +164,7 @@ final String dec =  "Decembre";
             BtnValidate.setVisible(true);
             BtnValidate.setDisable(false);
 
+             labelInfo.setVisible(true);
 
         } else if (Btn_add.getText().equals("Retour")) {
             Btn_add.setText("Ajouter un anniversaire");
@@ -195,6 +199,9 @@ final String dec =  "Decembre";
 
             BtnValidate.setVisible(false);
             BtnValidate.setDisable(true);
+            
+             labelInfo.setVisible(false);
+            
             PrintBirthday();
             
             
@@ -241,6 +248,7 @@ final String dec =  "Decembre";
             BtnValidate.setDisable(false);
             BtnValidate.setText("Supprimer");
 
+             labelInfo.setVisible(true);
             
             ArrayList<Anniversaire> liste = _database.getAllBirthday();
 
@@ -294,6 +302,8 @@ final String dec =  "Decembre";
             BtnValidate.setText("Valider");
             BtnValidate.setVisible(false);
             BtnValidate.setDisable(true);
+            
+             labelInfo.setVisible(false);
             
             PrintBirthday(); 
         }

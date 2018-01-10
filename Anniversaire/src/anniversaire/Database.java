@@ -8,6 +8,8 @@ package anniversaire;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -116,31 +118,84 @@ public class Database {
        _connection.commit();
    }
    
-   public Anniversaire NextBirthday() throws SQLException{
+//   public Anniversaire NextBirthday() throws SQLException{
+//       
+//       int mois = Calendar.getInstance().get(Calendar.MONTH)+1;
+//       
+//       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where MONTH(date_naissance) >= "+mois+" ORDER BY date_naissance ASC FETCH FIRST 1 ROWS ONLY");
+//       
+//       resultset.beforeFirst();
+//       Anniversaire an = null;
+//       if(resultset.next()){
+//            an = new Anniversaire();
+//           an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
+//       }
+//       if(an == null){
+//                  this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where MONTH(date_naissance) <= "+mois+" ORDER BY date_naissance Desc FETCH FIRST 1 ROWS ONLY");
+//       
+//       resultset.beforeFirst();
+//       
+//       if(resultset.next()){
+//            an = new Anniversaire();
+//           an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
+//       }
+//       return(an);
+//       }
+//      return(an);
+//   }
+   public Anniversaire NextBirthday() throws SQLException {
        
-       int mois = Calendar.getInstance().get(Calendar.MONTH)+1;
-       
-       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where MONTH(date_naissance) >= "+mois+" ORDER BY date_naissance ASC FETCH FIRST 1 ROWS ONLY");
-       
-       resultset.beforeFirst();
+       ArrayList<Anniversaire> Liste = new ArrayList<>();
+       this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire");
        Anniversaire an = null;
-       if(resultset.next()){
-            an = new Anniversaire();
+       this.resultset.beforeFirst();
+       while(this.resultset.next()){
+           an = new Anniversaire();
            an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
+           Liste.add(an);
        }
-       if(an == null){
-                  this.resultset = _connection.createStatement(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE, java.sql.ResultSet.CONCUR_READ_ONLY).executeQuery("select * from Anniversaire where MONTH(date_naissance) <= "+mois+" ORDER BY date_naissance Desc FETCH FIRST 1 ROWS ONLY");
+       if(!Liste.isEmpty()) {
+       System.out.println("loooooooool");
+       ArrayList<Anniversaire> After = new ArrayList<>();
+       ArrayList<Anniversaire> Before = new ArrayList<>();
        
-       resultset.beforeFirst();
+       for( int i = 0 ; i < Liste.size() ; i++) {
+           Calendar c = Convertisseur.stringToCalendar(Liste.get(i).get_date_naissance(), "yyyy-MM-dd");
+           Calendar today = Calendar.getInstance();
+           System.out.println("Date 1 : " + c.toString() + "\nDate 2 : "+today.toString());
+           if(((c.get(Calendar.MONTH)+1) == (today.get(Calendar.MONTH)+1)) && (c.get(Calendar.DAY_OF_MONTH) > today.get(Calendar.DAY_OF_MONTH)) ) {
+               System.out.println("test1");
+               After.add(Liste.get(i));
+           } else if (c.get(Calendar.MONTH) > today.get(Calendar.MONTH)) {
+               System.out.println("test2");
+               After.add(Liste.get(i));
+           } else {
+               System.out.println("test3");
+               Before.add(Liste.get(i));
+           }
+       }
        
-       if(resultset.next()){
-            an = new Anniversaire();
-           an.setAnniversaire(resultset.getString("nom"), resultset.getString("prenom"), resultset.getString("date_naissance"), resultset.getString("id"));
+       if(!After.isEmpty()) {
+        Collections.sort(After);
+        return(After.get(0));
+       } else {
+        Collections.sort(Before);
+        return(Before.get(0));
        }
-       return(an);
+//       Collections.sort(Liste, new Comparator<Anniversaire>(){
+//           @Override
+//           public int compare(Anniversaire a1, Anniversaire a2) {
+//               return()
+//           }
+//       });
+       
+       
+       } else {
+           System.out.println("VIDE");
+           return(null);
        }
-      return(an);
    }
+   
  
    
 }

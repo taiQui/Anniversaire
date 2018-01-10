@@ -61,8 +61,22 @@ public class FXMLDocumentController implements Initializable {
     private Font x3;
     @FXML
     private Button BtnValidate;
-
     
+    
+final String jan  = "Janvier" ;
+final String  feb  ="Fevrier" ;
+final String  mar ="Mars";
+final String  avr ="Avril";
+final String  mai ="Mai";
+final String  jui ="Juin";
+final String  juil ="Juillet";
+final String  aout= "Aout";
+final String sep ="Septembre";
+final String oct ="Octobre";
+final String  nov ="Novembre";
+final String dec =  "Decembre";
+    
+    String tab[]={jan,feb,mar,avr,mai,jui,juil,aout,sep,oct,nov,dec};
     
     
     
@@ -314,7 +328,7 @@ public class FXMLDocumentController implements Initializable {
         } else {
             text_printBirthday.setText("Il n'y a aucun anniversaire aujourd'hui");
             if(_database.NextBirthday()!= null)
-                text_printBirthday.setText(text_printBirthday.getText() + "\n\n\n" + "Le prochain anniversaire est celui de "+_database.NextBirthday().get_prenom()+" "+_database.NextBirthday().get_nom() +" le "+_database.NextBirthday().get_date_naissance());
+                text_printBirthday.setText(text_printBirthday.getText() + "\n\n\n" + "Le prochain anniversaire est celui de "+_database.NextBirthday().get_prenom()+" "+_database.NextBirthday().get_nom() +" le "+ Convertisseur.stringToCalendar(_database.NextBirthday().get_date_naissance(), "yyyy-MM-dd").get(Calendar.DAY_OF_MONTH) + " " + tab[(Convertisseur.stringToCalendar(_database.NextBirthday().get_date_naissance(), "yyyy-MM-dd").get(Calendar.MONTH)+1)-1]);
         }
         
     }

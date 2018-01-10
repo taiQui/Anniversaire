@@ -5,6 +5,7 @@
  */
 package anniversaire;
 
+import java.util.Calendar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,7 @@ import javafx.stage.Stage;
  *
  * @author taiQui
  */
-public class Anniversaire extends Application {
+public class Anniversaire extends Application implements Comparable<Anniversaire> {
 
     
     @Override
@@ -66,6 +67,24 @@ public class Anniversaire extends Application {
     
     public String get_id(){
         return (_id);
+    }
+
+    @Override
+    public int compareTo(Anniversaire t) {
+        Calendar cal1 = Convertisseur.stringToCalendar(this._date_naissance, "yyyy-MM-dd");
+        
+        Calendar cal2 = Convertisseur.stringToCalendar(t.get_date_naissance(),"yyyy-MM-dd");
+        
+
+        int month1 = cal1.get(Calendar.MONTH); 
+        int month2 = cal2.get(Calendar.MONTH);
+
+        if(month1 < month2)  
+          return -1;
+        else if(month1 == month2)
+          return cal1.get(Calendar.DAY_OF_MONTH) - cal2.get(Calendar.DAY_OF_MONTH);
+
+        else return 1;
     }
 
 

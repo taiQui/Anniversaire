@@ -21,7 +21,19 @@
     </VBox>
     <VBox alignment="CENTER" prefHeight="317.0" prefWidth="1022.0" VBox.vgrow="ALWAYS">
       <children>
-        <TextArea fx:id="text_printBirthday" editable="false" prefWidth="603.0" visible="true" wrapText="true" />
+        <HBox alignment="CENTER" prefHeight="272.0" prefWidth="530.0" VBox.vgrow="ALWAYS">
+          <children>
+            <TextArea fx:id="text_printBirthday" editable="false" prefWidth="603.0" visible="true" wrapText="true" />
+            <Label text="* Année sous formes : Année Mois Jour">
+              <font>
+                <Font name="System Bold Italic" size="12.0" />
+              </font>
+            </Label>
+          </children>
+          <padding>
+            <Insets left="-120.0" right="-200.0" />
+          </padding>
+        </HBox>
         <HBox prefHeight="158.0" prefWidth="530.0" VBox.vgrow="ALWAYS">
           <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
